@@ -20,10 +20,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        {/* Experimental */}
-        {/* <ClientOnly>
-          <Navbar />
-        </ClientOnly> */}
         <ToasterProvider />
         <RegisterModal />
         <Navbar />
