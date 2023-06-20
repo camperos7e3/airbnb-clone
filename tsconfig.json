@@ -25,7 +25,8 @@
       "@libs/*": ["./src/libs/*"],
       "@pages/*": ["./pages/*"],
       "@actions/*": ["./src/app/actions/*"],
-      "@data/*": ["./data/*"]
+      "@data/*": ["./data/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
