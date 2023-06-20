@@ -2,26 +2,36 @@
 
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useCallback, useState } from 'react'
+import { signOut } from 'next-auth/react'
 
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 
 import useRegisterModal from '@hooks/useRegisterModal'
 import useLoginModal from '@hooks/useLoginModal'
-import { type User } from '@prisma/client'
-import { signOut } from 'next-auth/react'
+import useRentModal from '@hooks/useRentModal'
+import { type SafeUser } from '@types'
 
 interface UserMenuProps {
-  currentUser?: User | null
+  currentUser?: SafeUser | null
 }
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
+  const rentModal = useRentModal()
   const [isOpen, setisOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
     setisOpen((value) => !value)
   }, [])
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      loginModal.onOpen()
+      return
+    }
+    rentModal.onOpen()
+  }, [currentUser, loginModal, rentModal])
 
   return (
     <div className="relative">
@@ -40,7 +50,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             cursor-pointer
           "
           onClick={() => {
-            alert('demo1')
+            onRent()
           }}
         >
           Airbnb your home
@@ -97,8 +107,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label="Login" />
-                <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+                <MenuItem
+                  onClick={() => {
+                    setisOpen(false)
+                    loginModal.onOpen()
+                  }}
+                  label="Login"
+                />
+                <MenuItem
+                  onClick={() => {
+                    setisOpen(false)
+                    registerModal.onOpen()
+                  }}
+                  label="Sign up"
+                />
               </>
             )}
           </div>
