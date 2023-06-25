@@ -11,7 +11,17 @@ interface HomeProps {
 }
 
 const Home = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams)
+  const params = {
+    userId: searchParams.userId ?? '',
+    roomCount: searchParams.roomCount ?? 0,
+    guestCount: searchParams.guestCount ?? 0,
+    bathroomCount: searchParams.bathroomCount ?? 0,
+    locationValue: searchParams.locationValue ?? '',
+    startDate: searchParams.startDate ?? '',
+    endDate: searchParams.endDate ?? '',
+    category: searchParams.category ?? ''
+  }
+  const listings = await getListings(params)
   const currentUser = await getCurrentUser()
 
   if (listings.length === 0) {
