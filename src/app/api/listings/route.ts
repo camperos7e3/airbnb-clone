@@ -32,7 +32,8 @@ export async function POST(request: Request) {
     data: {
       title,
       description,
-      imageSrc,
+      imageSrc:
+        'https://res.cloudinary.com/dwpqm9ddh/image/upload/v1687735766/airbnb-clone/tfsqwxe7c1eoddet04ra.jpg',
       category,
       roomCount,
       bathroomCount,

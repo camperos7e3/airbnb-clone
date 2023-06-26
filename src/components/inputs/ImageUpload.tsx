@@ -35,7 +35,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
       {({ open }) => {
         return (
           <div
-            onClick={() => open?.()}
+            onClick={() => {} /* open?.() */}
             className="
               relative
               cursor-pointer

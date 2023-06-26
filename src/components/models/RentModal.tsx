@@ -17,6 +17,8 @@ import ImageUpload from '@components/inputs/ImageUpload'
 import CountrySelect from '@components/inputs/CountrySelect'
 import CategoryInput from '@components/inputs/CategoryInput'
 
+import airbnb_default from '../../../public/images/airbnb-default.jpg'
+
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
@@ -231,7 +233,7 @@ const RentModal = () => {
           onChange={(value) => {
             setCustomValue('imageSrc', value)
           }}
-          value={imageSrc}
+          value={'/images/airbnb-default.jpg'}
         />
       </div>
     )
